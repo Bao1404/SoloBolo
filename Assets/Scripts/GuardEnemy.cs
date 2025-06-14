@@ -1,16 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GuardEnemy : Enemy
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (attackCollider.enabled && collision.CompareTag("Character"))
+        {
+            if (collision.TryGetComponent<Character>(out Character characterTarget))
+            {
+                characterTarget.TakeDame(attackDamage);
+            }
+        }
     }
 }
