@@ -4,7 +4,9 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Ll]ogs/
 MemoryCaptures/
+UserSettings/
 
 # VS/JetBrains
 *.csproj
@@ -14,3 +16,9 @@ MemoryCaptures/
 *.pidb
 *.svd
 .vscode/
+*.suo
+*.userprefs
+
+# OS
+.DS_Store
+Thumbs.db
