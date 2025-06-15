@@ -105,7 +105,7 @@ Rigidbody2D:
   m_Mass: 0.0001
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.05
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -129,9 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 450a111e733524f4d81fedbe3ed48fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  lifeTime: 5
   damage: 10
+  lifeTime: 5
 --- !u!70 &4727031322274867840
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

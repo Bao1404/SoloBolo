@@ -20,7 +20,7 @@ public abstract class Enemy : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         character = FindClosestCharacter();
-        attackCollider.enabled = false;
+        if (attackCollider != null) attackCollider.enabled = false;
         hitBoxCollider.enabled = true;
         currentHp = maxHp;
     }
@@ -87,7 +87,7 @@ public abstract class Enemy : MonoBehaviour
 
         return closest;
     }
-    protected void Attack()
+    protected virtual void Attack()
     {
         animator.SetBool("isAttack", true);
         StartCoroutine(AttackRoutine());
@@ -133,6 +133,7 @@ public abstract class Enemy : MonoBehaviour
     }
     private void Die()
     {
+        GameManager.instance.AddCoin(10);
         Destroy(gameObject);
     }
     protected void UpdateHealthBar()
@@ -140,6 +141,39 @@ public abstract class Enemy : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.fillAmount = currentHp / maxHp;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        TryIgnoreCharacterCollision(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        TryIgnoreCharacterCollision(collision);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && hitBoxCollider != null)
+        {
+            Collider2D otherCol = collision.collider;
+            Physics2D.IgnoreCollision(hitBoxCollider, otherCol, false);
+        }
+    }
+
+    private void TryIgnoreCharacterCollision(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && hitBoxCollider != null)
+        {
+            float y1 = transform.position.y;
+            float y2 = collision.transform.position.y;
+
+            if (Mathf.Abs(y1 - y2) > 0.1f)
+            {
+                Collider2D otherCol = collision.collider;
+                Physics2D.IgnoreCollision(hitBoxCollider, otherCol, true);
+            }
         }
     }
 }

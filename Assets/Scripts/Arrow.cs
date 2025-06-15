@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
+
 public class Arrow : MonoBehaviour
 {
     [SerializeField] private float damage = 10f;
     [SerializeField] private float lifeTime = 5f;
 
     private Rigidbody2D rb;
+    private string targetTag; // 👈 lưu tag của mục tiêu
 
-    public void Launch(Vector2 targetPosition, float timeToTarget)
+    public void Launch(Vector2 targetPosition, float timeToTarget, string targetTag)
     {
+        this.targetTag = targetTag;
         rb = GetComponent<Rigidbody2D>();
+
         Vector2 start = transform.position;
         Vector2 dir = targetPosition - start;
         float distance = dir.magnitude;
@@ -28,13 +32,27 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag(targetTag))
         {
-            if (collision.TryGetComponent<Enemy>(out Enemy enemy))
+            bool didDamage = false;
+
+            if (targetTag == "Enemy" && collision.TryGetComponent<Enemy>(out Enemy enemy))
             {
                 enemy.TakeDame(damage);
+                didDamage = true;
             }
-            Destroy(gameObject);
+            else if (targetTag == "Character" && collision.TryGetComponent<Character>(out Character character))
+            {
+                character.TakeDame(damage);
+                didDamage = true;
+            }
+
+            if (didDamage)
+                Destroy(gameObject);
+            if(transform.position.y < -2.2f)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

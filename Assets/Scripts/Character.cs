@@ -11,7 +11,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected float maxHp = 100f;
     protected float currentHp;
     [SerializeField] protected Image healthBar;
-    [SerializeField] protected CapsuleCollider2D? attackCollider;
+    [SerializeField] protected CapsuleCollider2D attackCollider;
     [SerializeField] protected BoxCollider2D hitBoxCollider;
     protected Enemy enemy;
     protected Animator animator;
@@ -105,10 +105,10 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    protected Enemy? FindClosestEnemy()
+    protected Enemy FindClosestEnemy()
     {
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-        Enemy? closest = null;
+        Enemy closest = null;
         float minDist = Mathf.Infinity;
 
         foreach (Enemy e in enemies)
@@ -186,7 +186,6 @@ public abstract class Character : MonoBehaviour
             {
                 Collider2D otherCol = collision.collider;
                 Physics2D.IgnoreCollision(hitBoxCollider, otherCol, true);
-                Debug.Log($"⏩ {name} ignore {collision.gameObject.name} do khác Y: {y1:F2} vs {y2:F2}");
             }
         }
     }
