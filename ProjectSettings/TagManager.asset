@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
+  - Character
   layers:
   - Default
   - TransparentFX
@@ -11,9 +13,9 @@ TagManager:
   - Background
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Enemy
+  - Character
+  - AttackCollider
   - 
   - 
   - 
@@ -40,6 +42,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Character
+    uniqueID: 4111566091
+    locked: 0
+  - name: HpBar
+    uniqueID: 1656761391
     locked: 0
   - name: Backgound
     uniqueID: 388447393
