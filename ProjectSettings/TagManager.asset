@@ -16,7 +16,7 @@ TagManager:
   - Enemy
   - Character
   - AttackCollider
-  - 
+  - Ground
   - 
   - 
   - 
@@ -54,6 +54,9 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 814401335
+    locked: 0
+  - name: ground
+    uniqueID: 1735820593
     locked: 0
   m_RenderingLayers:
   - Default

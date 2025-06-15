@@ -11,7 +11,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected float maxHp = 100f;
     protected float currentHp;
     [SerializeField] protected Image healthBar;
-    [SerializeField] protected CapsuleCollider2D attackCollider;
+    [SerializeField] protected CapsuleCollider2D? attackCollider;
     [SerializeField] protected BoxCollider2D hitBoxCollider;
     protected Enemy enemy;
     protected Animator animator;
@@ -19,10 +19,11 @@ public abstract class Character : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         enemy = FindClosestEnemy();
-        attackCollider.enabled = false;
+        if(attackCollider != null) attackCollider.enabled = false;
         hitBoxCollider.enabled = true;
         currentHp = maxHp;
     }
+
     protected virtual void Update()
     {
         if (enemy == null || enemy.gameObject == null)
@@ -41,6 +42,7 @@ public abstract class Character : MonoBehaviour
             Move();
         }
     }
+
     protected void Move()
     {
         animator.SetBool("isAttack", false);
@@ -59,31 +61,37 @@ public abstract class Character : MonoBehaviour
         transform.position += Vector3.right * walkSpeed * Time.deltaTime;
         FlipCharacter();
     }
+
     protected bool DetectEnemyInRange()
     {
         return enemy != null && enemy.gameObject != null &&
                Vector3.Distance(transform.position, enemy.transform.position) <= detectRange;
     }
+
     protected bool AttackEnemyInRange()
     {
         return enemy != null && enemy.gameObject != null &&
                Vector3.Distance(transform.position, enemy.transform.position) <= attackRange;
     }
-    protected void Attack()
+
+    protected virtual void Attack()
     {
         animator.SetBool("isAttack", true);
         StartCoroutine(AttackRoutine());
     }
+
     private IEnumerator AttackRoutine()
     {
-        attackCollider.enabled = true;
+        if (attackCollider != null) attackCollider.enabled = true;
         yield return new WaitForSeconds(0.4f);
-        attackCollider.enabled = false;
+        if (attackCollider != null) attackCollider.enabled = false;
     }
+
     public void DisableAttackCollider()
     {
-        attackCollider.enabled = false;
+        if (attackCollider != null) attackCollider.enabled = false;
     }
+
     protected void FlipCharacter()
     {
         if (enemy != null && DetectEnemyInRange())
@@ -96,10 +104,11 @@ public abstract class Character : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
-    protected Enemy FindClosestEnemy()
+
+    protected Enemy? FindClosestEnemy()
     {
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-        Enemy closest = null;
+        Enemy? closest = null;
         float minDist = Mathf.Infinity;
 
         foreach (Enemy e in enemies)
@@ -115,6 +124,7 @@ public abstract class Character : MonoBehaviour
 
         return closest;
     }
+
     protected void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -122,6 +132,7 @@ public abstract class Character : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, detectRange);
     }
+
     public void TakeDame(float damage)
     {
         currentHp -= damage;
@@ -132,15 +143,51 @@ public abstract class Character : MonoBehaviour
             Die();
         }
     }
+
     private void Die()
     {
         Destroy(gameObject);
     }
+
     protected void UpdateHealthBar()
     {
         if (healthBar != null)
         {
             healthBar.fillAmount = currentHp / maxHp;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        TryIgnoreCharacterCollision(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        TryIgnoreCharacterCollision(collision);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Character") && hitBoxCollider != null)
+        {
+            Collider2D otherCol = collision.collider;
+            Physics2D.IgnoreCollision(hitBoxCollider, otherCol, false);
+        }
+    }
+
+    private void TryIgnoreCharacterCollision(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Character") && hitBoxCollider != null)
+        {
+            float y1 = transform.position.y;
+            float y2 = collision.transform.position.y;
+
+            if (Mathf.Abs(y1 - y2) > 0.1f)
+            {
+                Collider2D otherCol = collision.collider;
+                Physics2D.IgnoreCollision(hitBoxCollider, otherCol, true);
+                Debug.Log($"⏩ {name} ignore {collision.gameObject.name} do khác Y: {y1:F2} vs {y2:F2}");
+            }
         }
     }
 }
