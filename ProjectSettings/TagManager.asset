@@ -16,7 +16,7 @@ TagManager:
   - Enemy
   - Character
   - AttackCollider
-  - 
+  - Ground
   - 
   - 
   - 
@@ -52,8 +52,14 @@ TagManager:
   - name: Backgound
     uniqueID: 388447393
     locked: 0
+  - name: ground
+    uniqueID: 1735820593
+    locked: 0
   - name: UI
     uniqueID: 814401335
+    locked: 0
+  - name: UI Image
+    uniqueID: 3555176203
     locked: 0
   m_RenderingLayers:
   - Default

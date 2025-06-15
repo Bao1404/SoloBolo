@@ -1,7 +1,58 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\SoloBolo\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\Unity Project\\SoloBolo\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|d:\\unity project\\solobolo\\assets\\textmesh pro\\shaders\\tmp_sdf-mobile.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\textmesh pro\\shaders\\tmp_sdf-mobile.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|d:\\unity project\\solobolo\\assets\\pixel font - tripfive\\_readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\pixel font - tripfive\\_readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|D:\\Unity Project\\SoloBolo\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|D:\\Unity Project\\SoloBolo\\assets\\scripts\\arrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\arrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|D:\\Unity Project\\SoloBolo\\assets\\scripts\\characterspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characterspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Unity Project\\Lab1\\Assets\\Scripts\\Spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|D:\\Unity Project\\SoloBolo\\assets\\scripts\\buttonhandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\buttonhandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|D:\\Unity Project\\SoloBolo\\assets\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|D:\\Unity Project\\SoloBolo\\assets\\scripts\\archerenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\archerenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Unity Project\\Lab1\\Assets\\Scripts\\ButtonHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|D:\\Unity Project\\SoloBolo\\assets\\scripts\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|D:\\Unity Project\\SoloBolo\\assets\\scripts\\guardcharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\guardcharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|D:\\Unity Project\\SoloBolo\\assets\\scripts\\archercharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D364C3F0-2698-CD8A-4009-F28CE67626C3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\archercharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,35 +60,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
               "$type": "Bookmark",
@@ -46,16 +73,184 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
-          "Children": [
+            },
             {
               "$type": "Bookmark",
-              "Name": "ST:2:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{28836128-fc2c-11d2-a433-00c04f72d18a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TMP_SDF-Mobile.shader",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader",
+              "RelativeDocumentMoniker": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader",
+              "RelativeToolTip": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2025-06-15T13:12:17.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_README.txt",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\Pixel Font - Tripfive\\_README.txt",
+              "RelativeDocumentMoniker": "Assets\\Pixel Font - Tripfive\\_README.txt",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\Pixel Font - Tripfive\\_README.txt",
+              "RelativeToolTip": "Assets\\Pixel Font - Tripfive\\_README.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-06-15T13:07:23.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T12:47:44.625Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ButtonHandle.cs",
+              "DocumentMoniker": "D:\\Unity Project\\Lab1\\Assets\\Scripts\\ButtonHandle.cs",
+              "RelativeDocumentMoniker": "..\\Lab1\\Assets\\Scripts\\ButtonHandle.cs",
+              "ToolTip": "D:\\Unity Project\\Lab1\\Assets\\Scripts\\ButtonHandle.cs",
+              "RelativeToolTip": "..\\Lab1\\Assets\\Scripts\\ButtonHandle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T12:11:45.404Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ButtonHandle.cs",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\ButtonHandle.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ButtonHandle.cs",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\ButtonHandle.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ButtonHandle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T12:08:52.35Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CharacterSpawner.cs",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\CharacterSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CharacterSpawner.cs",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\CharacterSpawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CharacterSpawner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T12:07:02.079Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Spawner.cs",
+              "DocumentMoniker": "D:\\Unity Project\\Lab1\\Assets\\Scripts\\Spawner.cs",
+              "RelativeDocumentMoniker": "..\\Lab1\\Assets\\Scripts\\Spawner.cs",
+              "ToolTip": "D:\\Unity Project\\Lab1\\Assets\\Scripts\\Spawner.cs",
+              "RelativeToolTip": "..\\Lab1\\Assets\\Scripts\\Spawner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T12:05:58.103Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Enemy.cs",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\Enemy.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy.cs",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\Enemy.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Enemy.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowEgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T10:45:09.009Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ArcherEnemy.cs",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\ArcherEnemy.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ArcherEnemy.cs",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\ArcherEnemy.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ArcherEnemy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowBAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T10:44:33.773Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GuardCharacter.cs",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\GuardCharacter.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GuardCharacter.cs",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\GuardCharacter.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GuardCharacter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T08:49:50.027Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Arrow.cs",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\Arrow.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Arrow.cs",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\Arrow.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Arrow.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAwwDUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T08:11:11.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Character.cs",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\Character.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Character.cs",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\Character.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Character.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG4AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T08:07:52.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ArcherCharacter.cs",
+              "DocumentMoniker": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\ArcherCharacter.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ArcherCharacter.cs",
+              "ToolTip": "D:\\Unity Project\\SoloBolo\\Assets\\Scripts\\ArcherCharacter.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ArcherCharacter.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T08:04:44.212Z"
             }
           ]
         }
