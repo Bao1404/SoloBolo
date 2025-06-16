@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8714926256171465166}
   - component: {fileID: 3877959402017333858}
   m_Layer: 0
-  m_Name: "khi\xEAng-\u0111i b\u1ED9_0"
+  m_Name: Tanker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
