@@ -17,6 +17,8 @@ public abstract class Character : MonoBehaviour
     protected Animator animator;
 
     [SerializeField] private string characterTag = "Character";  // Default tag
+    [SerializeField] public string characterType = "None"; 
+
 
     protected virtual void Start()
     {

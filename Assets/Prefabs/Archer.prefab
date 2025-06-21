@@ -344,6 +344,8 @@ MonoBehaviour:
   healthBar: {fileID: 1754363286818366136}
   attackCollider: {fileID: 0}
   hitBoxCollider: {fileID: 5939647135451018426}
+  characterTag: Character
+  characterType: Archer
   arrowPrefab: {fileID: 1304776806252212583, guid: 26190910cb206c346bb34d609e6ca5a3, type: 3}
   firePoint: {fileID: 7760365659469288276}
   arrowFlightTime: 0.6

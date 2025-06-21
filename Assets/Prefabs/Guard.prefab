@@ -462,6 +462,7 @@ MonoBehaviour:
   attackCollider: {fileID: 2790216251550663638}
   hitBoxCollider: {fileID: 6633704774548268224}
   characterTag: Enemy
+  characterType: Guard
 --- !u!70 &2790216251550663638
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

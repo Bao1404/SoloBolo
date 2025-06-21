@@ -388,6 +388,7 @@ MonoBehaviour:
   attackCollider: {fileID: 0}
   hitBoxCollider: {fileID: 5366477342342916124}
   characterTag: Enemy
+  characterType: Tanker
   shieldBlockDame: 10
 --- !u!61 &5366477342342916124
 BoxCollider2D:

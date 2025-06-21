@@ -6,16 +6,24 @@ public class CharacterSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private GameObject character;
     [SerializeField] private int spawnCost = 10;
+    private Character champ;
     // Update is called once per frame
+    private void Start()
+    {
+        champ = character.GetComponent<Character>();
+    }
     void Update()
     {
 
     }
-    public void SpawnCharacter()
+    public void SpawnCharacter(string type)
     {
         if (GameManager.instance.TrySpendCoin(spawnCost))
         {
-            GameObject obstacle = Instantiate(character, GetRandomPosition(), Quaternion.identity);
+            if (champ.characterType.Equals(type))
+            {
+                GameObject obstacle = Instantiate(character, GetRandomPosition(), Quaternion.identity);
+            }
         }
     }
     private Vector2 GetRandomPosition()
