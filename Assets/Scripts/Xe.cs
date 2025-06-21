@@ -2,16 +2,20 @@ using UnityEngine;
 
 public class Xe : Character
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Update()
     {
         if (AttackTargetInRange())
         {
+            Move();
             Attack();
         }
         else
         {
             Move();
         }
+    }
+    protected override void Attack()
+    {
+        base.Attack();
     }
 }
