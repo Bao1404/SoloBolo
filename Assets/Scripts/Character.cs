@@ -52,35 +52,27 @@ public abstract class Character : MonoBehaviour
 
     protected void Move()
     {
-        // Ensure that all characters, regardless of tag, move towards the target
+        // Kiểm tra xem mục tiêu có trong phạm vi phát hiện không
         if (DetectTargetInRange())
         {
             float distance = Vector3.Distance(transform.position, target.transform.position);
 
-            // Di chuyển khi khoảng cách lớn hơn tầm tấn công nhưng trong phạm vi phát hiện
-            if (!AttackTargetInRange() && DetectTargetInRange())
+            // Di chuyển về phía mục tiêu nếu không trong tầm đánh
+            if (distance > attackRange)
             {
                 Vector3 direction = (target.transform.position - transform.position).normalized;
 
-                // Di chuyển theo hướng phù hợp với tag của nhân vật
-                if (CompareTag("Character"))
-                {
-                    transform.position += Vector3.right * walkSpeed * Time.deltaTime;
-                }
-                else if (CompareTag("Enemy"))
-                {
-                    transform.position += Vector3.left * walkSpeed * Time.deltaTime;
-                }
+                // Di chuyển nhân vật về phía mục tiêu
+                transform.position += direction * walkSpeed * Time.deltaTime;
 
-                FlipCharacter();  // Đảo hình ảnh nhân vật dựa trên hướng di chuyển
+                FlipCharacter();  // Đảo hình ảnh nhân vật theo hướng di chuyển
             }
-            else if (distance <= attackRange)
+            else
             {
                 // Đã trong tầm đánh, dừng di chuyển và thực hiện tấn công
                 animator.SetBool("isAttack", true);
             }
         }
-        // Default movement if no target
         else
         {
             // Di chuyển mặc định nếu không có mục tiêu
@@ -92,9 +84,9 @@ public abstract class Character : MonoBehaviour
             {
                 transform.position += Vector3.left * walkSpeed * Time.deltaTime;
             }
-        }
 
-        FlipCharacter();  // Đảm bảo nhân vật luôn có hướng đúng khi di chuyển
+            FlipCharacter();  // Đảm bảo nhân vật luôn có hướng đúng khi di chuyển
+        }
     }
 
     protected void FlipCharacter()
@@ -202,9 +194,8 @@ public abstract class Character : MonoBehaviour
     }
 
     // Method for the character to die
-    private void Die()
+    public void Die()
     {
-        Debug.Log($"{gameObject.name} has died!");
         Destroy(gameObject);  // Destroy the character object
     }
 

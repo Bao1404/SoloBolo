@@ -6,24 +6,51 @@ public class ArcherEnemy : Character
     [SerializeField] private Transform firePoint;
     private GameObject character;
     [SerializeField] private float arrowFlightTime = 0.6f;
+    private float shootCooldown = 1f;  // Cooldown between shots (in seconds)
+    private float lastShootTime = 0f;  // Time of last shot
 
     protected override void Start()
     {
         base.Start();
-        character = FindClosestTarget();  // Find the closest character to shoot at
+        // Optionally, find the closest enemy character to shoot at
+        character = FindClosestTarget();
     }
+
+    protected override void Update()
+    {
+        // Kiểm tra mục tiêu và tấn công nếu mục tiêu ở trong phạm vi tấn công
+        if (AttackTargetInRange() && Time.time >= lastShootTime + shootCooldown)
+        {
+            animator.SetBool("isAttack", true);
+            Attack();  // Gọi Attack để bắn mũi tên
+        }
+        else
+        {
+            animator.SetBool("isAttack", false);
+            Move();  // Nếu không, di chuyển về phía mục tiêu
+        }
+    }
+
     protected override void Attack()
     {
-        animator.SetBool("isAttack", true);
+        ShootArrow();
     }
+
     public void ShootArrow()
     {
         if (character == null) return;
 
+        // Instantiate the arrow at the firePoint
         GameObject arrowObj = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
         Arrow arrow = arrowObj.GetComponent<Arrow>();
 
-        float timeToTarget = 0.2f;
-        arrow.Launch(character.transform.position, 0.3f, "Character");
+        // Calculate time to target (you can adjust this based on your game mechanics)
+        float timeToTarget = 0.6f;
+
+        // Launch the arrow towards the character's position
+        arrow.Launch(character.transform.position, timeToTarget, "Character");
+
+        // Update the last shoot time
+        lastShootTime = Time.time;
     }
 }
