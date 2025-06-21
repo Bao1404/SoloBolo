@@ -31,9 +31,10 @@ public abstract class Character : MonoBehaviour
     protected virtual void Update()
     {
         // If target is null, find a new one
-        if (target == null || target.GetComponent<Character>().currentHp <= 0)  // Check if target is dead
+        if (target == null)
         {
-            target = FindClosestTarget();  // Find a new target if the current one is dead or null
+            target = FindClosestTarget();
+            animator.SetBool("isAttack", false);  // Dừng hoạt ảnh tấn công khi không còn mục tiêu
         }
 
         UpdateHealthBar();
@@ -52,14 +53,16 @@ public abstract class Character : MonoBehaviour
     protected void Move()
     {
         // Ensure that all characters, regardless of tag, move towards the target
-        if (target != null)
+        if (DetectTargetInRange())
         {
             float distance = Vector3.Distance(transform.position, target.transform.position);
-            if (distance <= detectRange && distance > attackRange)
+
+            // Di chuyển khi khoảng cách lớn hơn tầm tấn công nhưng trong phạm vi phát hiện
+            if (!AttackTargetInRange() && DetectTargetInRange())
             {
                 Vector3 direction = (target.transform.position - transform.position).normalized;
 
-                // Move based on tag (Character moves right, Enemy moves left)
+                // Di chuyển theo hướng phù hợp với tag của nhân vật
                 if (CompareTag("Character"))
                 {
                     transform.position += Vector3.right * walkSpeed * Time.deltaTime;
@@ -69,22 +72,29 @@ public abstract class Character : MonoBehaviour
                     transform.position += Vector3.left * walkSpeed * Time.deltaTime;
                 }
 
-                FlipCharacter();  // Flip based on movement direction
-                return;
+                FlipCharacter();  // Đảo hình ảnh nhân vật dựa trên hướng di chuyển
+            }
+            else if (distance <= attackRange)
+            {
+                // Đã trong tầm đánh, dừng di chuyển và thực hiện tấn công
+                animator.SetBool("isAttack", true);
+            }
+        }
+        // Default movement if no target
+        else
+        {
+            // Di chuyển mặc định nếu không có mục tiêu
+            if (CompareTag("Character"))
+            {
+                transform.position += Vector3.right * walkSpeed * Time.deltaTime;
+            }
+            else if (CompareTag("Enemy"))
+            {
+                transform.position += Vector3.left * walkSpeed * Time.deltaTime;
             }
         }
 
-        // Default movement if no target
-        if (CompareTag("Character"))
-        {
-            transform.position += Vector3.right * walkSpeed * Time.deltaTime;
-        }
-        else if (CompareTag("Enemy"))
-        {
-            transform.position += Vector3.left * walkSpeed * Time.deltaTime;
-        }
-
-        FlipCharacter();  // Ensure correct orientation for the character
+        FlipCharacter();  // Đảm bảo nhân vật luôn có hướng đúng khi di chuyển
     }
 
     protected void FlipCharacter()
@@ -121,8 +131,15 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Attack()
     {
-        animator.SetBool("isAttack", true);
-        StartCoroutine(AttackRoutine());
+        if (target != null)  // Kiểm tra xem mục tiêu có còn sống không
+        {
+            animator.SetBool("isAttack", true);
+            StartCoroutine(AttackRoutine());
+        }
+        else
+        {
+            animator.SetBool("isAttack", false);  // Dừng hoạt ảnh nếu không còn mục tiêu
+        }
     }
 
     private IEnumerator AttackRoutine()
@@ -130,6 +147,9 @@ public abstract class Character : MonoBehaviour
         if (attackCollider != null) attackCollider.enabled = true;
         yield return new WaitForSeconds(0.4f);
         if (attackCollider != null) attackCollider.enabled = false;
+
+        // Dừng hoạt ảnh sau khi tấn công xong
+        animator.SetBool("isAttack", false);
     }
 
     // Disable attack collider
