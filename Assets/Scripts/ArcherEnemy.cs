@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 
-public class ArcherEnemy : Enemy
+public class ArcherEnemy : Character
 {
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform firePoint;
-
+    private GameObject character;
     [SerializeField] private float arrowFlightTime = 0.6f;
 
+    protected override void Start()
+    {
+        base.Start();
+        character = FindClosestTarget();  // Find the closest character to shoot at
+    }
     protected override void Attack()
     {
         animator.SetBool("isAttack", true);

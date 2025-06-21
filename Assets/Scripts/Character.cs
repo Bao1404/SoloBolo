@@ -13,65 +13,110 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected Image healthBar;
     [SerializeField] protected CapsuleCollider2D attackCollider;
     [SerializeField] protected BoxCollider2D hitBoxCollider;
-    protected Enemy enemy;
+    protected GameObject target;
     protected Animator animator;
+
+    [SerializeField] private string characterTag = "Character";  // Default tag
+
     protected virtual void Start()
     {
         animator = GetComponent<Animator>();
-        enemy = FindClosestEnemy();
-        if(attackCollider != null) attackCollider.enabled = false;
+        target = FindClosestTarget();  // Find the closest target (either character or enemy)
+
+        if (attackCollider != null) attackCollider.enabled = false;
         hitBoxCollider.enabled = true;
         currentHp = maxHp;
     }
 
     protected virtual void Update()
     {
-        if (enemy == null || enemy.gameObject == null)
+        // If target is null, find a new one
+        if (target == null || target.GetComponent<Character>().currentHp <= 0)  // Check if target is dead
         {
-            enemy = FindClosestEnemy();
+            target = FindClosestTarget();  // Find a new target if the current one is dead or null
         }
 
         UpdateHealthBar();
 
-        if (AttackEnemyInRange())
+        // Allow attack if within range
+        if (AttackTargetInRange())
         {
             Attack();
         }
         else
         {
-            Move();
+            Move();  // Move the character based on the target's position
         }
     }
 
     protected void Move()
     {
-        animator.SetBool("isAttack", false);
-
-        if (enemy != null)
+        // Ensure that all characters, regardless of tag, move towards the target
+        if (target != null)
         {
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            float distance = Vector3.Distance(transform.position, target.transform.position);
             if (distance <= detectRange && distance > attackRange)
             {
-                Vector3 direction = (enemy.transform.position - transform.position).normalized;
-                transform.position += direction * walkSpeed * Time.deltaTime;
-                FlipCharacter();
+                Vector3 direction = (target.transform.position - transform.position).normalized;
+
+                // Move based on tag (Character moves right, Enemy moves left)
+                if (CompareTag("Character"))
+                {
+                    transform.position += Vector3.right * walkSpeed * Time.deltaTime;
+                }
+                else if (CompareTag("Enemy"))
+                {
+                    transform.position += Vector3.left * walkSpeed * Time.deltaTime;
+                }
+
+                FlipCharacter();  // Flip based on movement direction
                 return;
             }
         }
-        transform.position += Vector3.right * walkSpeed * Time.deltaTime;
-        FlipCharacter();
+
+        // Default movement if no target
+        if (CompareTag("Character"))
+        {
+            transform.position += Vector3.right * walkSpeed * Time.deltaTime;
+        }
+        else if (CompareTag("Enemy"))
+        {
+            transform.position += Vector3.left * walkSpeed * Time.deltaTime;
+        }
+
+        FlipCharacter();  // Ensure correct orientation for the character
     }
 
-    protected bool DetectEnemyInRange()
+    protected void FlipCharacter()
     {
-        return enemy != null && enemy.gameObject != null &&
-               Vector3.Distance(transform.position, enemy.transform.position) <= detectRange;
+        // Flip the character sprite depending on the tag and direction
+        if (CompareTag("Character"))
+        {
+            transform.localScale = new Vector3(1, 1, 1);  // Flip right for character
+        }
+        else if (CompareTag("Enemy"))
+        {
+            transform.localScale = new Vector3(-1, 1, 1);  // Flip left for enemy
+        }
     }
 
-    protected bool AttackEnemyInRange()
+    protected virtual void SetAnimation()
     {
-        return enemy != null && enemy.gameObject != null &&
-               Vector3.Distance(transform.position, enemy.transform.position) <= attackRange;
+        // Placeholder for setting animations (if any)
+    }
+
+    // Detect if the target is in range (for movement or attack)
+    protected bool DetectTargetInRange()
+    {
+        return target != null && target.gameObject != null &&
+               Vector3.Distance(transform.position, target.transform.position) <= detectRange;
+    }
+
+    // Attack logic when in range
+    protected bool AttackTargetInRange()
+    {
+        return target != null && target.gameObject != null &&
+               Vector3.Distance(transform.position, target.transform.position) <= attackRange;
     }
 
     protected virtual void Attack()
@@ -87,68 +132,34 @@ public abstract class Character : MonoBehaviour
         if (attackCollider != null) attackCollider.enabled = false;
     }
 
+    // Disable attack collider
     public void DisableAttackCollider()
     {
         if (attackCollider != null) attackCollider.enabled = false;
     }
 
-    protected void FlipCharacter()
+    // Find the closest target (Character or Enemy) based on the tag
+    protected GameObject FindClosestTarget()
     {
-        if (enemy != null && DetectEnemyInRange())
-        {
-            float direction = enemy.transform.position.x - transform.position.x;
-            transform.localScale = new Vector3(direction < 0 ? -1 : 1, 1, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-    }
-
-    protected Enemy FindClosestEnemy()
-    {
-        Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-        Enemy closest = null;
+        GameObject[] characters = GameObject.FindGameObjectsWithTag(characterTag);
+        GameObject closest = null;
         float minDist = Mathf.Infinity;
 
-        foreach (Enemy e in enemies)
+        foreach (GameObject c in characters)
         {
-            if (e == null) continue;
-            float dist = Vector3.Distance(transform.position, e.transform.position);
+            if (c == null) continue;
+            float dist = Vector3.Distance(transform.position, c.transform.position);
             if (dist < minDist)
             {
                 minDist = dist;
-                closest = e;
+                closest = c;
             }
         }
 
         return closest;
     }
 
-    protected void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, detectRange);
-    }
-
-    public void TakeDame(float damage)
-    {
-        currentHp -= damage;
-        currentHp = Mathf.Max(currentHp, 0);
-        UpdateHealthBar();
-        if (currentHp <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject);
-    }
-
+    // Update health bar UI
     protected void UpdateHealthBar()
     {
         if (healthBar != null)
@@ -156,6 +167,28 @@ public abstract class Character : MonoBehaviour
             healthBar.fillAmount = currentHp / maxHp;
         }
     }
+
+    // Method to take damage and reduce health
+    public virtual void TakeDamage(float damage)
+    {
+        currentHp -= damage;
+        currentHp = Mathf.Max(currentHp, 0);  // Ensure health doesn't go below 0
+        UpdateHealthBar();
+
+        if (currentHp <= 0)
+        {
+            Die();  // If health is 0 or less, call Die function
+        }
+    }
+
+    // Method for the character to die
+    private void Die()
+    {
+        Debug.Log($"{gameObject.name} has died!");
+        Destroy(gameObject);  // Destroy the character object
+    }
+
+    // Collision detection with other objects (such as enemies or characters)
     private void OnCollisionEnter2D(Collision2D collision)
     {
         TryIgnoreCharacterCollision(collision);
@@ -168,7 +201,7 @@ public abstract class Character : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Character") && hitBoxCollider != null)
+        if ((collision.gameObject.CompareTag("Character") || collision.gameObject.CompareTag("Enemy")) && hitBoxCollider != null)
         {
             Collider2D otherCol = collision.collider;
             Physics2D.IgnoreCollision(hitBoxCollider, otherCol, false);
@@ -177,7 +210,7 @@ public abstract class Character : MonoBehaviour
 
     private void TryIgnoreCharacterCollision(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Character") && hitBoxCollider != null)
+        if ((collision.gameObject.CompareTag("Character") || collision.gameObject.CompareTag("Enemy")) && hitBoxCollider != null)
         {
             float y1 = transform.position.y;
             float y2 = collision.transform.position.y;
@@ -188,5 +221,40 @@ public abstract class Character : MonoBehaviour
                 Physics2D.IgnoreCollision(hitBoxCollider, otherCol, true);
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (attackCollider != null && attackCollider.enabled && CompareTag("Character"))
+        {
+            if (collision.CompareTag("Enemy"))
+            {
+                Character enemyTarget = collision.GetComponent<Character>();
+                if (enemyTarget != null)
+                {
+                    enemyTarget.TakeDamage(attackDamage);
+                }
+            }
+        }
+
+        if (attackCollider != null && attackCollider.enabled && CompareTag("Enemy"))
+        {
+            if (collision.CompareTag("Character"))
+            {
+                Character characterTarget = collision.GetComponent<Character>();
+                if (characterTarget != null)
+                {
+                    characterTarget.TakeDamage(attackDamage);
+                }
+            }
+        }
+    }
+
+    protected void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
     }
 }
