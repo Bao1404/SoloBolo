@@ -284,7 +284,7 @@ Transform:
   m_GameObject: {fileID: 8068111047538388462}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.61, y: -1.18, z: 0}
+  m_LocalPosition: {x: -3.54, y: -1.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -333,7 +333,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -183401205
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 6140200140057729791, guid: 6eec3c9867c549c43b9d59abd3a39c49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -461,6 +461,7 @@ MonoBehaviour:
   healthBar: {fileID: 1754363286818366136}
   attackCollider: {fileID: 2790216251550663638}
   hitBoxCollider: {fileID: 6633704774548268224}
+  characterTag: Enemy
 --- !u!70 &2790216251550663638
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
