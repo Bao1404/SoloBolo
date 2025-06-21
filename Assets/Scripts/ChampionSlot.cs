@@ -25,43 +25,18 @@ public class ChampionSlot : MonoBehaviour
 
         isTransparent = !isTransparent;
 
-        Debug.Log($"[ChampionSlot] OnClick() called - GameObject: {gameObject.name}");
-
-        if (ChampionSelector.Instance == null) return;
-        Debug.Log($"[ChampionSlot] Prefab found: {hiddenPrefab.name}");
+        Debug.Log("name: " + hiddenPrefab.name);
 
         if (!isSelected && ChampionSelector.Instance.CanSelectMore())
         {
+            ChampionSelector.Instance.SelectChampion(hiddenPrefab.name);
             isSelected = true;
-            transform.localScale = Vector3.one * 1.2f;
-            SetAlpha(0.5f);
-
-            // ✅ Kiểm tra prefab ẩn
-            if (hiddenPrefab != null)
-            {
-                Debug.Log($"[ChampionSlot] Prefab found: {hiddenPrefab.name}");
-            }
-            else
-            {
-                Debug.LogWarning("[ChampionSlot] No hidden prefab found under this button.");
-            }
         }
         else if (isSelected)
         {
+            ChampionSelector.Instance.DeselectChampion(hiddenPrefab.name);
             isSelected = false;
-            transform.localScale = Vector3.one;
-            SetAlpha(1f);
         }
     }
 
-
-    private void SetAlpha(float alpha)
-    {
-        if (image != null)
-        {
-            Color color = image.color;
-            color.a = alpha;
-            image.color = color;
-        }
-    }
 }
