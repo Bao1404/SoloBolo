@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 6654896263706590884}
   - component: {fileID: 6853800633123444542}
   m_Layer: 7
-  m_Name: But
+  m_Name: FairyGod
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

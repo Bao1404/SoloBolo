@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,24 +8,24 @@ public class ChampionSelector : MonoBehaviour
     public static ChampionSelector Instance;
 
     public List<string> selectedChampions = new List<string>();
-    public int maxChampion = 1;
+    public int maxChampion = 3;
 
     private void Awake()
     {
-        int level = 1;
-        if (SaveManager.Instance != null)
-        {
-            level = SaveManager.Instance.LoadLevel();
-        }
+        // int level = 1;
+        // if (SaveManager.Instance != null)
+        // {
+        //     level = SaveManager.Instance.LoadLevel();
+        // }
 
-        if (level <= 4)
-        {
-            maxChampion = level + 1;
-        }
-        else
-        {
-            maxChampion = 4;
-        }
+        // if (level <= 4)
+        // {
+        //     maxChampion = level + 1;
+        // }
+        // else
+        // {
+        //     maxChampion = 4;
+        // }
 
         if (Instance == null)
         {
@@ -43,6 +44,7 @@ public class ChampionSelector : MonoBehaviour
         if (!selectedChampions.Contains(name) && selectedChampions.Count < maxChampion)
         {
             selectedChampions.Add(name);
+            Debug.Log("Add: " + name);
         }
     }
 
@@ -51,6 +53,7 @@ public class ChampionSelector : MonoBehaviour
         if (selectedChampions.Contains(name))
         {
             selectedChampions.Remove(name);
+            Debug.Log("Remove: " + name);
         }
     }
 
@@ -67,7 +70,7 @@ public class ChampionSelector : MonoBehaviour
             // int level = SaveManager.Instance.LoadLevel();
             // Debug.Log("Level"+level);
             // SceneManager.LoadScene("SceneGameLevel" + SaveManager.Instance.LoadLevel());
-            // SceneManager.LoadScene("SceneGameLevel1");
+            SceneManager.LoadScene("SceneGame");
 
         }
         else

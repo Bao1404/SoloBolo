@@ -19,23 +19,26 @@ public class ChampionSlot : MonoBehaviour
     {
         if (image == null) return;
 
+        // Debug.Log("name: " + hiddenPrefab.name);
+
         Color color = image.color;
         color.a = isTransparent ? 1f : 0.2f;
-        image.color = color;
-
-        isTransparent = !isTransparent;
-
-        Debug.Log("name: " + hiddenPrefab.name);
 
         if (!isSelected && ChampionSelector.Instance.CanSelectMore())
         {
             ChampionSelector.Instance.SelectChampion(hiddenPrefab.name);
             isSelected = true;
+
+            isTransparent = true;
+            image.color = color;
         }
         else if (isSelected)
         {
             ChampionSelector.Instance.DeselectChampion(hiddenPrefab.name);
             isSelected = false;
+
+            isTransparent = false;
+            image.color = color;
         }
     }
 
