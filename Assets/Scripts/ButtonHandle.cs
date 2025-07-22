@@ -10,6 +10,8 @@ public class ButtonHandle : MonoBehaviour
         if (spawner != null)
         {
             spawner.SpawnCharacter(characterType);
+            Debug.Log("sdadasd");
         }
+        else Debug.Log("Null nè e");
     }
 }
