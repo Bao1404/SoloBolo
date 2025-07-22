@@ -46,13 +46,13 @@ public class Arrow : MonoBehaviour
             // Apply damage to the "Enemy" if it's an enemy character
             if (targetTag == "Enemy" && collision.TryGetComponent<Character>(out Character enemy))
             {
-                enemy.TakeDamage(damage);  // Use the TakeDamage method in the Character class
+                //enemy.TakeDamage(damage);  // Use the TakeDamage method in the Character class
                 didDamage = true;
             }
             // Apply damage to the "Character" if it's a player character
             else if (targetTag == "Character" && collision.TryGetComponent<Character>(out Character character))
             {
-                character.TakeDamage(damage);  // Use the TakeDamage method in the Character class
+                //character.TakeDamage(damage);  // Use the TakeDamage method in the Character class
                 didDamage = true;
             }
 

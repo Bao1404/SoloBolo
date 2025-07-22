@@ -289,7 +289,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -183401205
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -4812278653358861407, guid: 210dc91bc2876f6458edbbf28f3b3cea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -344,8 +344,8 @@ MonoBehaviour:
   healthBar: {fileID: 1754363286818366136}
   attackCollider: {fileID: 0}
   hitBoxCollider: {fileID: 5939647135451018426}
-  characterTag: Character
   characterType: Archer
+  characterTag: Character
   arrowPrefab: {fileID: 1304776806252212583, guid: 26190910cb206c346bb34d609e6ca5a3, type: 3}
   firePoint: {fileID: 7760365659469288276}
   arrowFlightTime: 0.6

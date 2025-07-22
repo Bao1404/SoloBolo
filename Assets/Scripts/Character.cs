@@ -13,26 +13,29 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected Image healthBar;
     [SerializeField] protected CapsuleCollider2D attackCollider;
     [SerializeField] protected BoxCollider2D hitBoxCollider;
+    [SerializeField] public string characterType = "None";
     protected GameObject target;
     protected Animator animator;
+    private Vector3 initialScale;
 
-    [SerializeField] private string characterTag = "Character";  // Default tag
-    [SerializeField] public string characterType = "None"; 
-
+    [SerializeField] private string characterTag = "Character";  // Tag mặc định
 
     protected virtual void Start()
     {
         animator = GetComponent<Animator>();
-        target = FindClosestTarget();  // Find the closest target (either character or enemy)
+        target = FindClosestTarget();
 
         if (attackCollider != null) attackCollider.enabled = false;
         hitBoxCollider.enabled = true;
         currentHp = maxHp;
+
+        // Lưu hướng ban đầu của nhân vật
+        initialScale = transform.localScale;
     }
 
     protected virtual void Update()
     {
-        // If target is null, find a new one
+        // Nếu không có mục tiêu, tìm mục tiêu mới
         if (target == null)
         {
             target = FindClosestTarget();
@@ -41,20 +44,30 @@ public abstract class Character : MonoBehaviour
 
         UpdateHealthBar();
 
-        // Allow attack if within range
-        if (AttackTargetInRange())
+        // Kiểm tra nếu mục tiêu trong phạm vi phát hiện
+        if (DetectTargetInRange())
         {
-            Attack();
+            FlipCharacter();  // Quay về hướng kẻ địch
+            // Tấn công nếu mục tiêu trong phạm vi
+            if (AttackTargetInRange())
+            {
+                Attack();
+            }
+            else
+            {
+                Move();
+            }
         }
         else
         {
-            Move();  // Move the character based on the target's position
+            transform.localScale = initialScale;
+            Move();  // Di chuyển về phía mục tiêu
         }
     }
 
     protected void Move()
     {
-        // Kiểm tra xem mục tiêu có trong phạm vi phát hiện không
+        // Kiểm tra xem có kẻ địch trong phạm vi phát hiện không
         if (DetectTargetInRange())
         {
             float distance = Vector3.Distance(transform.position, target.transform.position);
@@ -63,21 +76,18 @@ public abstract class Character : MonoBehaviour
             if (distance > attackRange)
             {
                 Vector3 direction = (target.transform.position - transform.position).normalized;
-
-                // Di chuyển nhân vật về phía mục tiêu
                 transform.position += direction * walkSpeed * Time.deltaTime;
 
-                FlipCharacter();  // Đảo hình ảnh nhân vật theo hướng di chuyển
+                FlipCharacter();  // Quay về hướng kẻ địch
             }
             else
             {
-                // Đã trong tầm đánh, dừng di chuyển và thực hiện tấn công
-                animator.SetBool("isAttack", true);
+                SetAttackAnimation(true); // Bắt đầu hoạt ảnh tấn công nếu trong phạm vi
             }
         }
         else
         {
-            // Di chuyển mặc định nếu không có mục tiêu
+            // Di chuyển mặc định nếu không có mục tiêu trong phạm vi
             if (CompareTag("Character"))
             {
                 transform.position += Vector3.right * walkSpeed * Time.deltaTime;
@@ -87,52 +97,59 @@ public abstract class Character : MonoBehaviour
                 transform.position += Vector3.left * walkSpeed * Time.deltaTime;
             }
 
-            FlipCharacter();  // Đảm bảo nhân vật luôn có hướng đúng khi di chuyển
+            transform.localScale = initialScale;  // Quay lại hướng ban đầu khi không có mục tiêu
         }
     }
 
     protected void FlipCharacter()
     {
-        // Flip the character sprite depending on the tag and direction
-        if (CompareTag("Character"))
+        // Tính toán hướng từ nhân vật đến mục tiêu
+        Vector3 directionToTarget = target.transform.position - transform.position;
+
+        // Kiểm tra xem mục tiêu nằm bên trái hay bên phải của nhân vật
+        if (directionToTarget.x > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);  // Flip right for character
+            // Nếu kẻ địch nằm bên phải, nhân vật sẽ quay sang phải
+            transform.localScale = new Vector3(1, 1, 1);  // Lật phải
         }
-        else if (CompareTag("Enemy"))
+        else
         {
-            transform.localScale = new Vector3(-1, 1, 1);  // Flip left for enemy
+            // Nếu kẻ địch nằm bên trái, nhân vật sẽ quay sang trái
+            transform.localScale = new Vector3(-1, 1, 1);  // Lật trái
         }
     }
 
-    protected virtual void SetAnimation()
+    // Cập nhật trạng thái hoạt ảnh tấn công, tránh thay đổi quá thường xuyên
+    protected void SetAttackAnimation(bool isAttacking)
     {
-        // Placeholder for setting animations (if any)
+        if (animator.GetBool("isAttack") != isAttacking)
+        {
+            animator.SetBool("isAttack", isAttacking);
+        }
     }
 
-    // Detect if the target is in range (for movement or attack)
+    // Kiểm tra xem mục tiêu có trong phạm vi hay không
     protected bool DetectTargetInRange()
     {
-        return target != null && target.gameObject != null &&
-               Vector3.Distance(transform.position, target.transform.position) <= detectRange;
+        return target != null && Vector3.Distance(transform.position, target.transform.position) <= detectRange;
     }
 
-    // Attack logic when in range
+    // Tấn công khi mục tiêu trong phạm vi
     protected bool AttackTargetInRange()
     {
-        return target != null && target.gameObject != null &&
-               Vector3.Distance(transform.position, target.transform.position) <= attackRange;
+        return target != null && Vector3.Distance(transform.position, target.transform.position) <= attackRange;
     }
 
     protected virtual void Attack()
     {
-        if (target != null)  // Kiểm tra xem mục tiêu có còn sống không
+        if (target != null)
         {
-            animator.SetBool("isAttack", true);
+            SetAttackAnimation(true);
             StartCoroutine(AttackRoutine());
         }
         else
         {
-            animator.SetBool("isAttack", false);  // Dừng hoạt ảnh nếu không còn mục tiêu
+            SetAttackAnimation(false);
         }
     }
 
@@ -143,16 +160,16 @@ public abstract class Character : MonoBehaviour
         if (attackCollider != null) attackCollider.enabled = false;
 
         // Dừng hoạt ảnh sau khi tấn công xong
-        animator.SetBool("isAttack", false);
+        SetAttackAnimation(false);
     }
 
-    // Disable attack collider
+    // Tắt collider của đòn tấn công
     public void DisableAttackCollider()
     {
         if (attackCollider != null) attackCollider.enabled = false;
     }
 
-    // Find the closest target (Character or Enemy) based on the tag
+    // Tìm mục tiêu gần nhất dựa trên tag
     protected GameObject FindClosestTarget()
     {
         GameObject[] characters = GameObject.FindGameObjectsWithTag(characterTag);
@@ -173,7 +190,7 @@ public abstract class Character : MonoBehaviour
         return closest;
     }
 
-    // Update health bar UI
+    // Cập nhật thanh máu
     protected void UpdateHealthBar()
     {
         if (healthBar != null)
@@ -182,26 +199,29 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    // Method to take damage and reduce health
+    // Phương thức nhận sát thương và giảm máu
     public virtual void TakeDamage(float damage)
     {
         currentHp -= damage;
-        currentHp = Mathf.Max(currentHp, 0);  // Ensure health doesn't go below 0
+        currentHp = Mathf.Max(currentHp, 0);
         UpdateHealthBar();
 
         if (currentHp <= 0)
         {
-            Die();  // If health is 0 or less, call Die function
+            Die();
         }
     }
 
-    // Method for the character to die
+    // Phương thức chết
     public void Die()
     {
-        Destroy(gameObject);  // Destroy the character object
+        // Khôi phục lại hướng ban đầu khi nhân vật chết
+        transform.localScale = initialScale;
+
+        Destroy(gameObject);  // Tiêu diệt đối tượng
     }
 
-    // Collision detection with other objects (such as enemies or characters)
+    // Xử lý va chạm với các đối tượng khác (như kẻ thù hoặc nhân vật)
     private void OnCollisionEnter2D(Collision2D collision)
     {
         TryIgnoreCharacterCollision(collision);
@@ -238,27 +258,29 @@ public abstract class Character : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (attackCollider != null && attackCollider.enabled && CompareTag("Character"))
+        if (attackCollider != null && attackCollider.enabled)
         {
-            if (collision.CompareTag("Enemy"))
+            HandleAttackCollision(collision);
+        }
+    }
+
+    // Xử lý va chạm khi tấn công với mục tiêu
+    private void HandleAttackCollision(Collider2D collision)
+    {
+        if (CompareTag("Character") && collision.CompareTag("Enemy"))
+        {
+            Character enemyTarget = collision.GetComponent<Character>();
+            if (enemyTarget != null)
             {
-                Character enemyTarget = collision.GetComponent<Character>();
-                if (enemyTarget != null)
-                {
-                    enemyTarget.TakeDamage(attackDamage);
-                }
+                enemyTarget.TakeDamage(attackDamage);
             }
         }
-
-        if (attackCollider != null && attackCollider.enabled && CompareTag("Enemy"))
+        else if (CompareTag("Enemy") && collision.CompareTag("Character"))
         {
-            if (collision.CompareTag("Character"))
+            Character characterTarget = collision.GetComponent<Character>();
+            if (characterTarget != null)
             {
-                Character characterTarget = collision.GetComponent<Character>();
-                if (characterTarget != null)
-                {
-                    characterTarget.TakeDamage(attackDamage);
-                }
+                characterTarget.TakeDamage(attackDamage);
             }
         }
     }

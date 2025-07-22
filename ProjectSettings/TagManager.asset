@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Enemy
   - Character
   - Base
+  - ally
+  - enemy
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Character
   - AttackCollider
   - Ground
-  - 
+  - Base
   - 
   - 
   - 
@@ -43,6 +45,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Base
+    uniqueID: 4216648239
     locked: 0
   - name: Character
     uniqueID: 4111566091
