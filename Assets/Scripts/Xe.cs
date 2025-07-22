@@ -4,18 +4,13 @@ public class Xe : Character
 {
     protected override void Update()
     {
-        if (AttackTargetInRange())
-        {
-            Move();
-            Attack();
-        }
-        else
-        {
-            Move();
-        }
+        Move();
     }
-    protected override void Attack()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        base.Attack();
+        if (true)
+        {
+
+        }
     }
 }

@@ -18,22 +18,26 @@ public class ArcherEnemy : Character
 
     protected override void Update()
     {
-        // Kiểm tra mục tiêu và tấn công nếu mục tiêu ở trong phạm vi tấn công
+        // If target is null, find a new one
+        if (character == null)
+        {
+            character = FindClosestTarget();
+            animator.SetBool("isAttack", false);  // Dừng hoạt ảnh tấn công khi không còn mục tiêu
+        }
+
+        UpdateHealthBar();
+
+        // Allow attack if within range
         if (AttackTargetInRange() && Time.time >= lastShootTime + shootCooldown)
         {
             animator.SetBool("isAttack", true);
-            Attack();  // Gọi Attack để bắn mũi tên
+            ShootArrow();
         }
         else
         {
             animator.SetBool("isAttack", false);
-            Move();  // Nếu không, di chuyển về phía mục tiêu
+            Move();  // Move the character based on the target's position
         }
-    }
-
-    protected override void Attack()
-    {
-        ShootArrow();
     }
 
     public void ShootArrow()

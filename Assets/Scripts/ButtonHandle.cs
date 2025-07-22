@@ -3,13 +3,13 @@ using UnityEngine;
 public class ButtonHandle : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void OnClickSpawn()
+    public void OnClickSpawn(string characterType)
     {
         CharacterSpawner spawner = Object.FindFirstObjectByType<CharacterSpawner>();
 
         if (spawner != null)
         {
-            spawner.SpawnCharacter();
+            spawner.SpawnCharacter(characterType);
         }
     }
 }
