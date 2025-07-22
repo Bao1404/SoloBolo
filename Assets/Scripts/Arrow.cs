@@ -4,6 +4,7 @@ public class Arrow : MonoBehaviour
 {
     [SerializeField] private float damage = 10f;
     [SerializeField] private float lifeTime = 5f;
+    [SerializeField] public float speed = 10f;  // Thêm trường speed cho mũi tên
 
     private Rigidbody2D rb;
     private string targetTag; // Store the target's tag
@@ -17,7 +18,9 @@ public class Arrow : MonoBehaviour
         Vector2 start = transform.position;
         Vector2 dir = targetPosition - start;
         float distance = dir.magnitude;
-        Vector2 velocity = dir.normalized * (distance / timeToTarget);
+
+        // Calculate velocity to hit the target using the speed field
+        Vector2 velocity = dir.normalized * speed;
 
         // Set the arrow's velocity
         rb.linearVelocity = velocity;
@@ -46,13 +49,13 @@ public class Arrow : MonoBehaviour
             // Apply damage to the "Enemy" if it's an enemy character
             if (targetTag == "Enemy" && collision.TryGetComponent<Character>(out Character enemy))
             {
-                //enemy.TakeDamage(damage);  // Use the TakeDamage method in the Character class
+                enemy.TakeDamage(damage);  // Use the TakeDamage method in the Character class
                 didDamage = true;
             }
             // Apply damage to the "Character" if it's a player character
             else if (targetTag == "Character" && collision.TryGetComponent<Character>(out Character character))
             {
-                //character.TakeDamage(damage);  // Use the TakeDamage method in the Character class
+                character.TakeDamage(damage);  // Use the TakeDamage method in the Character class
                 didDamage = true;
             }
 

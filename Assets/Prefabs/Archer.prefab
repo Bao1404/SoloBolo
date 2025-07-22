@@ -338,14 +338,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 0.5
   attackRange: 5
-  attackDamage: 10
+  attackDamage: 0
   detectRange: 5
   maxHp: 50
   healthBar: {fileID: 1754363286818366136}
   attackCollider: {fileID: 0}
   hitBoxCollider: {fileID: 5939647135451018426}
   characterType: Archer
-  characterTag: Character
+  initialScale: {x: 0, y: 0, z: 0}
+  characterTag: Enemy
   arrowPrefab: {fileID: 1304776806252212583, guid: 26190910cb206c346bb34d609e6ca5a3, type: 3}
   firePoint: {fileID: 7760365659469288276}
   arrowFlightTime: 0.6

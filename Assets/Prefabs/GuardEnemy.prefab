@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 3604696424655391475}
   - component: {fileID: 5034045470172138130}
   - component: {fileID: 136228196270873359}
-  - component: {fileID: 4489531092842203967}
+  - component: {fileID: 2063575459979998851}
   m_Layer: 6
   m_Name: GuardEnemy
   m_TagString: Enemy
@@ -134,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 2495742087452783778}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.0735397, y: -1.6839297, z: 0}
+  m_LocalPosition: {x: -1.1788, y: -0.49691, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -183,7 +183,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -183401205
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 6140200140057729791, guid: 6eec3c9867c549c43b9d59abd3a39c49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -328,7 +328,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.29087618, y: -0.11399235}
   m_Size: {x: 0.40252608, y: 0.2531588}
   m_Direction: 1
---- !u!114 &4489531092842203967
+--- !u!114 &2063575459979998851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -337,17 +337,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2495742087452783778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27cea1f1fcb7a3c4092f68a57d58a2ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 88bdd22cc4de2db4a970b747bd9e8658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 0.5
   attackRange: 0.5
   attackDamage: 10
-  detectRange: 1.5
+  detectRange: 3
   maxHp: 100
+  currentHp: 0
   healthBar: {fileID: 574685827370339603}
   attackCollider: {fileID: 136228196270873359}
   hitBoxCollider: {fileID: 5034045470172138130}
+  characterType: Guard
+  initialScale: {x: 0, y: 0, z: 0}
   characterTag: Character
 --- !u!1 &3267063824882679413
 GameObject:

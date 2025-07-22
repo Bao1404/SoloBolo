@@ -377,15 +377,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e41a48f8451d5419030a81123d6617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 0.5
-  attackRange: 1
-  attackDamage: 10
-  detectRange: 5
-  maxHp: 100
-  healthBar: {fileID: 1754363286818366136}
-  attackCollider: {fileID: 0}
-  hitBoxCollider: {fileID: 6654896263706590884}
-  characterTag: Enemy
+  healAmount: 5
+  healRange: 3
+  moveSpeed: 0.5
 --- !u!1 &6172331722850585658
 GameObject:
   m_ObjectHideFlags: 0
