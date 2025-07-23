@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public abstract class Character : MonoBehaviour
 {
@@ -153,43 +154,9 @@ public abstract class Character : MonoBehaviour
 
     protected bool AttackTargetInRange()
     {
-        if (target != null)
-        {
-            float distance = Vector3.Distance(transform.position, target.transform.position);
-
-            // Nếu là nhân vật "Character"
-            if (CompareTag("Character"))
-            {
-                // Kiểm tra nếu target là Base hoặc EnemyBase
-                if (target.GetComponent<Base>().CompareTag("EnemyBase"))
-                {
-                    // Tấn công đối tượng là Base hoặc EnemyBase
-                    return distance <= attackRange;
-                }
-                else if (target.CompareTag("Enemy"))
-                {
-                    // Tấn công kẻ địch có tag "Enemy"
-                    return distance <= attackRange;
-                }
-            }
-            // Nếu là nhân vật "Enemy"
-            else if (CompareTag("Enemy"))
-            {
-                // Kiểm tra nếu target là Base hoặc Base của đối phương
-                if (target.GetComponent<Base>().CompareTag("Base"))
-                {
-                    // Tấn công đối tượng là Base hoặc EnemyBase
-                    return distance <= attackRange;
-                }
-                else if (target.CompareTag("Character"))
-                {
-                    // Tấn công nhân vật có tag "Character"
-                    return distance <= attackRange;
-                }
-            }
-        }
-
-        return false;  // Nếu không phải mục tiêu hợp lệ, trả về false
+        if (target == null) return false;
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+        return distance <= attackRange;
     }
 
     protected virtual void Attack()
@@ -222,18 +189,36 @@ public abstract class Character : MonoBehaviour
 
     protected GameObject FindClosestTarget()
     {
-        GameObject[] characters = GameObject.FindGameObjectsWithTag(characterTag);
+        GameObject[] targets;
+
+        if (CompareTag("Character"))
+        {
+            // Nhân vật sẽ tìm Enemy và EnemyBase
+            targets = GameObject
+                .FindGameObjectsWithTag("Enemy")
+                .Concat(GameObject.FindGameObjectsWithTag("EnemyBase"))
+                .ToArray();
+        }
+        else // CompareTag("Enemy")
+        {
+            // Kẻ địch sẽ tìm Character và Base
+            targets = GameObject
+                .FindGameObjectsWithTag("Character")
+                .Concat(GameObject.FindGameObjectsWithTag("Base"))
+                .ToArray();
+        }
+
         GameObject closest = null;
         float minDist = Mathf.Infinity;
 
-        foreach (GameObject c in characters)
+        foreach (GameObject t in targets)
         {
-            if (c == null) continue;
-            float dist = Vector3.Distance(transform.position, c.transform.position);
+            if (t == null) continue;
+            float dist = Vector3.Distance(transform.position, t.transform.position);
             if (dist < minDist)
             {
                 minDist = dist;
-                closest = c;
+                closest = t;
             }
         }
 

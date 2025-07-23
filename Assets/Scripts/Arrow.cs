@@ -58,6 +58,16 @@ public class Arrow : MonoBehaviour
                 character.TakeDamage(damage);  // Use the TakeDamage method in the Character class
                 didDamage = true;
             }
+            else if(targetTag == "Enemy" && collision.TryGetComponent<Base>(out Base enemyBase))
+            {
+                enemyBase.TakeDamage(damage);
+                didDamage = true;
+            }
+            else if(targetTag == "Character" && collision.TryGetComponent<Base>(out Base characterBase))
+            {
+                characterBase.TakeDamage(damage);
+                didDamage = true;
+            }
 
             // Destroy the arrow after it has damaged a target
             if (didDamage)
