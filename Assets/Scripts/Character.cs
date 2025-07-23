@@ -18,6 +18,7 @@ public abstract class Character : MonoBehaviour
     protected GameObject target;
     protected Animator animator;
     public Vector3 initialScale;
+    private bool isAttacking = false;
 
     [SerializeField] private string characterTag = "Character";  // Tag mặc định
 
@@ -48,24 +49,23 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        // Nếu không có mục tiêu, tìm mục tiêu mới
         if (target == null)
         {
             target = FindClosestTarget();
-            animator.SetBool("isAttack", false);  // Dừng hoạt ảnh tấn công khi không còn mục tiêu
+            animator.SetBool("isAttack", false);
         }
 
         UpdateHealthBar();
 
-        // Kiểm tra nếu mục tiêu trong phạm vi phát hiện
         if (DetectTargetInRange())
         {
-            FlipCharacter();  // Quay về hướng kẻ địch
-            // Tấn công nếu mục tiêu trong phạm vi
+            FlipCharacter();
+
             if (AttackTargetInRange())
             {
-                Attack();
-                FindNextTarget();  // Tìm kiếm mục tiêu mới sau khi tấn công xong
+                // Chỉ gọi Attack nếu chưa đang tấn công
+                if (!isAttacking)
+                    Attack();
             }
             else
             {
@@ -75,7 +75,7 @@ public abstract class Character : MonoBehaviour
         else
         {
             transform.localScale = initialScale;
-            Move();  // Di chuyển về phía mục tiêu nếu không có mục tiêu trong phạm vi
+            Move();
         }
     }
 
@@ -161,25 +161,22 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Attack()
     {
-        if (target != null)
-        {
-            SetAttackAnimation(true);
-            StartCoroutine(AttackRoutine());
-        }
-        else
-        {
-            SetAttackAnimation(false);
-        }
+        if (attackCollider == null) return;
+
+        isAttacking = true;                  // bật cờ
+        SetAttackAnimation(true);
+        StartCoroutine(AttackRoutine());
     }
 
     private IEnumerator AttackRoutine()
     {
-        if (attackCollider != null) attackCollider.enabled = true;
-        yield return new WaitForSeconds(0.4f);
-        if (attackCollider != null) attackCollider.enabled = false;
+        attackCollider.enabled = true;
+        yield return new WaitForSeconds(1f); // thời gian attack
 
-        // Dừng hoạt ảnh sau khi tấn công xong
+        attackCollider.enabled = false;
         SetAttackAnimation(false);
+        isAttacking = false;                 // tắt cờ
+        FindNextTarget();                    // chỉ tìm mục tiêu mới sau khi attack xong
     }
 
     public void DisableAttackCollider()
