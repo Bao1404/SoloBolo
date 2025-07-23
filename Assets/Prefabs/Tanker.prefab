@@ -383,7 +383,8 @@ MonoBehaviour:
   attackRange: 1
   attackDamage: 0
   detectRange: 1
-  maxHp: 300
+  maxHp: 200
+  currentHp: 0
   healthBar: {fileID: 1754363286818366136}
   attackCollider: {fileID: 0}
   hitBoxCollider: {fileID: 5366477342342916124}

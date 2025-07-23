@@ -132,10 +132,12 @@ MonoBehaviour:
   attackDamage: 10
   detectRange: 5
   maxHp: 50
+  currentHp: 0
   healthBar: {fileID: 5373571518236450255}
   attackCollider: {fileID: 0}
   hitBoxCollider: {fileID: 4544759053372035476}
   characterType: Archer
+  initialScale: {x: 0, y: 0, z: 0}
   characterTag: Character
   arrowPrefab: {fileID: 1304776806252212583, guid: 26190910cb206c346bb34d609e6ca5a3, type: 3}
   firePoint: {fileID: 3647267855562530035}

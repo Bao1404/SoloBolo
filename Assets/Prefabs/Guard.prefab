@@ -458,12 +458,13 @@ MonoBehaviour:
   attackDamage: 10
   detectRange: 1.5
   maxHp: 100
+  currentHp: 0
   healthBar: {fileID: 1754363286818366136}
   attackCollider: {fileID: 2790216251550663638}
   hitBoxCollider: {fileID: 6633704774548268224}
   characterType: Guard
+  initialScale: {x: 0, y: 0, z: 0}
   characterTag: Enemy
-  characterType: Guard
 --- !u!70 &2790216251550663638
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
