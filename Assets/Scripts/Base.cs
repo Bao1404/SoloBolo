@@ -48,6 +48,14 @@ public class Base : MonoBehaviour
     public void DestroyBase()
     {
         Destroy(gameObject);
+        if (CompareTag("Character"))
+        {
+            GameManager.instance.GameOver();
+        }
+        else if (CompareTag("Enemy"))
+        {
+            GameManager.instance.Win();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

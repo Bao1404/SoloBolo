@@ -8,10 +8,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private float coin = 0f;
     [SerializeField] private float coinPerSecond = 1f;
+    [SerializeField] TextMeshProUGUI gameoverText;
+    [SerializeField] GameObject restartButton;
+    [SerializeField] GameObject menuButton;
+    [SerializeField] TextMeshProUGUI winText;
+    private bool isGameOver = false;
+    private bool isWin = false;
 
     private void Start()
     {
         Transform targetParent = GameObject.Find("Canvas/SelectChampion")?.transform;
+
+        gameoverText.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
+        menuButton.gameObject.SetActive(false);
+        winText.gameObject.SetActive(false);
 
         List<string> champions = ChampionSelector.Instance.selectedChampions;
 
@@ -43,7 +54,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        UpdateCoin();
+        if (!isGameOver)
+        {
+            UpdateCoin();
+        }
     }
     private void UpdateCoin()
     {
@@ -62,5 +76,17 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public void GameOver()
+    {
+            isGameOver = true;
+            gameoverText.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);
+            menuButton.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+    }
+    public void Win()
+    {
+            
     }
 }
