@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI gameoverText;
     [SerializeField] GameObject restartButton;
     [SerializeField] GameObject menuButton;
-    [SerializeField] GameObject nextButton;
     [SerializeField] TextMeshProUGUI winText;
     private bool isGameOver = false;
     private bool isWin = false;
@@ -24,7 +23,6 @@ public class GameManager : MonoBehaviour
         restartButton.gameObject.SetActive(false);
         menuButton.gameObject.SetActive(false);
         winText.gameObject.SetActive(false);
-        nextButton.gameObject.SetActive(false);
 
         List<string> champions = ChampionSelector.Instance.selectedChampions;
 
@@ -90,8 +88,8 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
             isWin = true;
-            winText.gameObject.SetActive(true);
-        nextButton.gameObject.SetActive(true);
+        winText.gameObject.SetActive(true);
         menuButton.gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
