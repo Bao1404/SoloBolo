@@ -44,5 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cf797b96494e34981cb2746b469f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 8068111047538388462, guid: 8a81ebea5601d2c4fb11a9955dccc6bf, type: 3}
-  spawnCost: 10
+  character:
+  - {fileID: 1267153779930854012, guid: fb3d6856bdad1ae4b8be1f04db0673d4, type: 3}
+  - {fileID: 5496900692889624044, guid: bad8f3515b8b94c4b8aeac6b691f4d51, type: 3}
+  - {fileID: 2485124086109799001, guid: 32a2b8cd1f5518e44a9fa0abf35d6741, type: 3}
+  - {fileID: 0}
