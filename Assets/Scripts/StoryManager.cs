@@ -100,6 +100,6 @@ public class StoryManager : MonoBehaviour
 
     void LoadNextScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("SelectChampion1");
     }
 }
