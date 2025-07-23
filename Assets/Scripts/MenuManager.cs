@@ -5,6 +5,6 @@ public class MenuManager : MonoBehaviour
 {
  public void BackToMenu()
     {
-        SceneManager.LoadScene("MenuGame");
+        SceneManager.LoadScene("SelectChampion1");
     }
 }
