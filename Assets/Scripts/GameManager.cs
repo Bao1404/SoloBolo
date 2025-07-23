@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Transform targetParent = GameObject.Find("Canvas/SelectChampion")?.transform;
+        Transform targetParent = GameObject.Find("Canvas/Panel")?.transform;
 
         gameoverText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
         List<string> champions = ChampionSelector.Instance.selectedChampions;
 
-        if (targetParent != null && champions != null)
+        if (champions != null)
         {
             for (int i = 0; i < champions.Count; i++)
             {
@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
                 if (prefab != null)
                 {
                     GameObject obj = Instantiate(prefab, targetParent);
-                    obj.transform.localScale = Vector3.one;
-                    obj.transform.localPosition = new Vector3(-400f + (400f * i), -770f, -85);
+                    obj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    obj.transform.localPosition = new Vector3(-200f + (150f * i), -390f, -85);
                 }
                 else
                 {

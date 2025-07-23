@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6406717232512239705}
   - component: {fileID: 8843586866746455225}
   m_Layer: 6
-  m_Name: Xe (Enemy)
+  m_Name: Car (Enemy)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

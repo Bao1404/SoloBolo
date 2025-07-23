@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5598196742812225566}
   - component: {fileID: 5328886627823744843}
   - component: {fileID: 5254152168310850604}
-  - component: {fileID: -5260390167901720027}
+  - component: {fileID: 1066607937760371206}
   m_Layer: 5
   m_Name: SpawnGuard
   m_TagString: Untagged
@@ -124,19 +124,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -5260390167901720027}
+      - m_Target: {fileID: 1066607937760371206}
         m_TargetAssemblyTypeName: ButtonHandle, Assembly-CSharp
         m_MethodName: OnClickSpawn
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Guard
+          m_StringArgument: Guard, 10
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-5260390167901720027
+--- !u!114 &1066607937760371206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088315fb12dbd464cb38eb00f73ddb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: Guard
 --- !u!1 &2458066356082436718
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +223,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -739791093
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 32b264cf55ad7444696b291a8a1b4886, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -445,7 +446,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -739791093
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7951107536275477272, guid: fad2bd32bf2984b4cb97884a128dc2ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
