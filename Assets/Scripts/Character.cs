@@ -49,13 +49,14 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (target == null)
+        UpdateHealthBar();
+
+        // Nếu chưa đang tấn công, luôn tìm mục tiêu gần nhất
+        if (!isAttacking)
         {
             target = FindClosestTarget();
             animator.SetBool("isAttack", false);
         }
-
-        UpdateHealthBar();
 
         if (DetectTargetInRange())
         {
@@ -63,7 +64,6 @@ public abstract class Character : MonoBehaviour
 
             if (AttackTargetInRange())
             {
-                // Chỉ gọi Attack nếu chưa đang tấn công
                 if (!isAttacking)
                     Attack();
             }
@@ -163,7 +163,7 @@ public abstract class Character : MonoBehaviour
     {
         if (attackCollider == null) return;
 
-        isAttacking = true;                  // bật cờ
+        isAttacking = true;
         SetAttackAnimation(true);
         StartCoroutine(AttackRoutine());
     }
@@ -171,12 +171,12 @@ public abstract class Character : MonoBehaviour
     private IEnumerator AttackRoutine()
     {
         attackCollider.enabled = true;
-        yield return new WaitForSeconds(1f); // thời gian attack
+        yield return new WaitForSeconds(1f);
 
         attackCollider.enabled = false;
         SetAttackAnimation(false);
-        isAttacking = false;                 // tắt cờ
-        FindNextTarget();                    // chỉ tìm mục tiêu mới sau khi attack xong
+        isAttacking = false;
+        // Ngay khi kết thúc attack, sẽ tự động trong Update() tìm lại target gần nhất
     }
 
     public void DisableAttackCollider()
@@ -246,6 +246,10 @@ public abstract class Character : MonoBehaviour
     {
         transform.localScale = initialScale;
         Destroy(gameObject);  // Tiêu diệt đối tượng
+        if (CompareTag("Enemy"))
+        {
+            GameManager.instance.AddCoin(5);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

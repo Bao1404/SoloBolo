@@ -22,7 +22,7 @@ public class CharacterSpawner : MonoBehaviour
         {
             if (champ.characterType.Equals(type))
             {
-                GameObject obstacle = Instantiate(character, GetRandomPosition(), Quaternion.identity);
+                GameObject champ = Instantiate(character, GetRandomPosition(), Quaternion.identity);
             }
         }
     }

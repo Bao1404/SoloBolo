@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonHandle : MonoBehaviour
 {
@@ -13,5 +14,9 @@ public class ButtonHandle : MonoBehaviour
             Debug.Log("sdadasd");
         }
         else Debug.Log("Null nè e");
+    }
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
