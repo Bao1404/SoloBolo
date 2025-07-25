@@ -390,8 +390,10 @@ MonoBehaviour:
   hitBoxCollider: {fileID: 5366477342342916124}
   characterType: Tanker
   initialScale: {x: 0, y: 0, z: 0}
+  dieSound: {fileID: 8300000, guid: 2118dffb06adc484e9781e1ae0aa50ad, type: 3}
   characterTag: Enemy
   shieldBlockDame: 10
+  blockSound: {fileID: 8300000, guid: 9bd9df90135b8d04da13a2c2a588fc3d, type: 3}
 --- !u!61 &5366477342342916124
 BoxCollider2D:
   m_ObjectHideFlags: 0

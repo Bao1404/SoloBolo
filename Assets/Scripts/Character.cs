@@ -20,6 +20,9 @@ public abstract class Character : MonoBehaviour
     public Vector3 initialScale;
     private bool isAttacking = false;
 
+    private AudioSource audioDieSource;  
+    public AudioClip dieSound; 
+
     [SerializeField] private string characterTag = "Character";  // Tag mặc định
 
     protected virtual void Start()
@@ -246,9 +249,28 @@ public abstract class Character : MonoBehaviour
     {
         transform.localScale = initialScale;
         Destroy(gameObject);  // Tiêu diệt đối tượng
+        DieSound();
         if (CompareTag("Enemy"))
         {
             GameManager.instance.AddCoin(5);
+        }
+    }
+
+    private void DieSound()
+    {
+        if (audioDieSource != null && dieSound != null)
+        {
+            audioDieSource.PlayOneShot(dieSound);  // Phát âm thanh một lần
+        }
+    }
+
+    private void Awake()
+    {
+        // Tìm AudioSource nếu chưa có
+        audioDieSource = GetComponent<AudioSource>();
+        if (audioDieSource == null)
+        {
+            audioDieSource = gameObject.AddComponent<AudioSource>();  // Nếu không có, tạo một AudioSource mới
         }
     }
 

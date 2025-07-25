@@ -351,7 +351,9 @@ MonoBehaviour:
   hitBoxCollider: {fileID: 5034045470172138130}
   characterType: Guard
   initialScale: {x: 0, y: 0, z: 0}
+  dieSound: {fileID: 8300000, guid: 2118dffb06adc484e9781e1ae0aa50ad, type: 3}
   characterTag: Character
+  attackSound: {fileID: 8300000, guid: acac53cbcb1dd8240a3cebd0c1952bcb, type: 3}
 --- !u!1 &3267063824882679413
 GameObject:
   m_ObjectHideFlags: 0

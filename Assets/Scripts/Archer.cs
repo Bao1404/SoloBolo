@@ -8,6 +8,9 @@ public class Archer : Character
     private float shootCooldown = 1f;  // Cooldown between shots (in seconds)
     private float lastShootTime = 0f;  // Time of last shot
 
+    private AudioSource audioSource;  
+    public AudioClip attackSound; 
+
     protected override void Start()
     {
         base.Start();
@@ -68,6 +71,8 @@ public class Archer : Character
             GameObject arrowObj = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
             Arrow arrow = arrowObj.GetComponent<Arrow>();
 
+            PlayAttackSound();
+
             if (arrow != null)
             {
                 // Tính toán thời gian bay của mũi tên
@@ -95,5 +100,23 @@ public class Archer : Character
             return distance <= attackRange;
         }
         return false;
+    }
+
+    private void PlayAttackSound()
+    {
+        if (audioSource != null && attackSound != null)
+        {
+            audioSource.PlayOneShot(attackSound);  // Phát âm thanh một lần
+        }
+    }
+
+    private void Awake()
+    {
+        // Tìm AudioSource nếu chưa có
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();  // Nếu không có, tạo một AudioSource mới
+        }
     }
 }

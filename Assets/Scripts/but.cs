@@ -10,6 +10,9 @@ public class But : MonoBehaviour
 
     private bool isHealing = false; // Kiểm tra xem Bụt có đang hồi máu hay không
 
+    private AudioSource audioDieSource;  
+    public AudioClip dieSound; 
+
     void Start()
     {
         animator = GetComponent<Animator>();  // Lấy Animator từ đối tượng
@@ -112,8 +115,25 @@ public class But : MonoBehaviour
     // Phương thức chết
     public void Die()
     {
-        Debug.Log("But is dead!");
         Destroy(gameObject);  // Tiêu diệt đối tượng
+    }
+
+    private void DieSound()
+    {
+        if (audioDieSource != null && dieSound != null)
+        {
+            audioDieSource.PlayOneShot(dieSound);  // Phát âm thanh một lần
+        }
+    }
+
+    private void Awake()
+    {
+        // Tìm AudioSource nếu chưa có
+        audioDieSource = GetComponent<AudioSource>();
+        if (audioDieSource == null)
+        {
+            audioDieSource = gameObject.AddComponent<AudioSource>();  // Nếu không có, tạo một AudioSource mới
+        }
     }
 
     // Vẽ Gizmo để hiển thị phạm vi hồi máu

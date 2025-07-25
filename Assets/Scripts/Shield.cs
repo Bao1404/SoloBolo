@@ -6,6 +6,9 @@ public class Shield : Character
 
     private bool isShieldActive = false;  // Kiểm tra khiên có đang hoạt động không
 
+    private AudioSource audioSource;
+    public AudioClip blockSound;
+
     protected override void Start()
     {
         base.Start();
@@ -67,6 +70,7 @@ public class Shield : Character
     {
         if (isShieldActive)
         {
+            PlayBlockSound();
             damage -= shieldBlockDame;  // Giảm bớt lượng sát thương nhận vào
             damage = Mathf.Max(damage, 0);  // Đảm bảo sát thương không giảm xuống dưới 0
             Debug.Log("Damage reduced by shield: " + shieldBlockDame);
@@ -83,4 +87,22 @@ public class Shield : Character
     }
 
     // Các phương thức khác của lớp Character (FindClosestTarget, UpdateHealthBar, Die...)
+    
+    private void PlayBlockSound()
+    {
+        if (audioSource != null && blockSound != null)
+        {
+            audioSource.PlayOneShot(blockSound);  // Phát âm thanh một lần
+        }
+    }
+
+    private void Awake()
+    {
+        // Tìm AudioSource nếu chưa có
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();  // Nếu không có, tạo một AudioSource mới
+        }
+    }
 }

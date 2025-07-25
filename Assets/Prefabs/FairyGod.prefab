@@ -380,6 +380,7 @@ MonoBehaviour:
   healAmount: 2
   healRange: 3
   moveSpeed: 0.5
+  dieSound: {fileID: 8300000, guid: 2118dffb06adc484e9781e1ae0aa50ad, type: 3}
 --- !u!1 &6172331722850585658
 GameObject:
   m_ObjectHideFlags: 0

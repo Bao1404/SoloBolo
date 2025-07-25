@@ -2,8 +2,11 @@
 
 public class Xe : Character
 {
+    private AudioSource audioSource;
+    public AudioClip attackSound;
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        PlayAttackSound();       
         // Kiểm tra nếu Xe có tag "Character" va chạm với kẻ địch (có tag "Enemy")
         if (CompareTag("Character") && collision.gameObject.CompareTag("Enemy"))
         {
@@ -18,7 +21,7 @@ public class Xe : Character
                 Debug.Log("Enemy destroyed by Character!");
             }
 
-            if(enemyBase != null)
+            if (enemyBase != null)
             {
                 Destroy(gameObject);
                 enemyBase.TakeDamage(200);
@@ -37,11 +40,28 @@ public class Xe : Character
                 character.Die();
                 Debug.Log("Character destroyed by Enemy!");
             }
-            if(characterBase != null)
+            if (characterBase != null)
             {
                 Destroy(gameObject);
                 characterBase.TakeDamage(200);
             }
+        }
+    }
+    private void PlayAttackSound()
+    {
+        if (audioSource != null && attackSound != null)
+        {
+            audioSource.PlayOneShot(attackSound);  // Phát âm thanh một lần
+        }
+    }
+
+    private void Awake()
+    {
+        // Tìm AudioSource nếu chưa có
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();  // Nếu không có, tạo một AudioSource mới
         }
     }
 }

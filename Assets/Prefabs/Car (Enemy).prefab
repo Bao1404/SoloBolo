@@ -174,7 +174,9 @@ MonoBehaviour:
   hitBoxCollider: {fileID: 4966624840521480214}
   characterType: None
   initialScale: {x: 0, y: 0, z: 0}
+  dieSound: {fileID: 8300000, guid: 2118dffb06adc484e9781e1ae0aa50ad, type: 3}
   characterTag: Enemy
+  attackSound: {fileID: 8300000, guid: 102ea0ceec45d144cbffcc45a752befd, type: 3}
 --- !u!95 &6406717232512239705
 Animator:
   serializedVersion: 7

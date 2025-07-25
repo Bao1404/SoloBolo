@@ -138,10 +138,12 @@ MonoBehaviour:
   hitBoxCollider: {fileID: 4544759053372035476}
   characterType: Archer
   initialScale: {x: 0, y: 0, z: 0}
+  dieSound: {fileID: 8300000, guid: 2118dffb06adc484e9781e1ae0aa50ad, type: 3}
   characterTag: Character
   arrowPrefab: {fileID: 1304776806252212583, guid: 26190910cb206c346bb34d609e6ca5a3, type: 3}
   firePoint: {fileID: 3647267855562530035}
   arrowFlightTime: 0.6
+  attackSound: {fileID: 8300000, guid: 77e3caa590642b2458c8fa5a0962e16f, type: 3}
 --- !u!61 &4544759053372035476
 BoxCollider2D:
   m_ObjectHideFlags: 0
