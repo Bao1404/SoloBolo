@@ -465,6 +465,7 @@ MonoBehaviour:
   characterType: Guard
   initialScale: {x: 0, y: 0, z: 0}
   characterTag: Enemy
+  attackSound: {fileID: 8300000, guid: acac53cbcb1dd8240a3cebd0c1952bcb, type: 3}
 --- !u!70 &2790216251550663638
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
