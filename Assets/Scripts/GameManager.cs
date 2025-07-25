@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float coinPerSecond = 1f;
     [SerializeField] TextMeshProUGUI gameoverText;
     [SerializeField] GameObject restartButton;
+    [SerializeField] GameObject nextButton;
     [SerializeField] GameObject menuButton;
     [SerializeField] TextMeshProUGUI winText;
     private bool isGameOver = false;
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
 
         gameoverText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
+        nextButton.gameObject.SetActive(false);
         menuButton.gameObject.SetActive(false);
         winText.gameObject.SetActive(false);
 
@@ -87,9 +90,19 @@ public class GameManager : MonoBehaviour
     }
     public void Win()
     {
-            isWin = true;
+        isWin = true;
         winText.gameObject.SetActive(true);
+
+        if (SceneManager.GetActiveScene().name != "SceneGame2")
+        {
+            nextButton.gameObject.SetActive(true);
+        }
         menuButton.gameObject.SetActive(true);
         Time.timeScale = 0f;
+    }
+    public void RestartGame(string sceneName)
+    {
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 }

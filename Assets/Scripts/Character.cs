@@ -252,7 +252,7 @@ public abstract class Character : MonoBehaviour
         DieSound();
         if (CompareTag("Enemy"))
         {
-            GameManager.instance.AddCoin(5);
+            GameManager.instance.AddCoin(2);
         }
     }
 
