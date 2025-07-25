@@ -6,7 +6,7 @@ public class start : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void StartGame()
     {
-        SceneManager.LoadScene("StoryScene"); // tên scene chính
+        SceneManager.LoadScene("SelectChampion1"); // tên scene chính
     }
 
     public void QuitGame()
