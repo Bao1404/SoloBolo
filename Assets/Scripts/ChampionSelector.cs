@@ -78,5 +78,22 @@ public class ChampionSelector : MonoBehaviour
             Debug.LogWarning("Bạn phải chọn ít nhất 1 và không quá " + maxChampion + " tướng để tiếp tục.");
         }
     }
+    public void GoToNextScene2()
+    {
+        int count = selectedChampions.Count;
+        if (count > 0 && count <= maxChampion)
+        {
+            // int level = SaveManager.Instance.LoadLevel();
+            // Debug.Log("Level"+level);
+            // SceneManager.LoadScene("SceneGameLevel" + SaveManager.Instance.LoadLevel());
+            SceneManager.LoadScene("SceneGame2");
+            GameManager.instance.RestartGame("SceneGame2");
+        }
+        else
+        {
+            Debug.LogWarning("Bạn phải chọn ít nhất 1 và không quá " + maxChampion + " tướng để tiếp tục.");
+        }
+    }
+   
 
 }

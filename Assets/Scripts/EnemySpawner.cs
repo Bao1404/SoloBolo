@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class EnemySpawner : MonoBehaviour
     {
         timer += Time.deltaTime;
 
+        // Kiểm tra Scene hiện tại
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
         // 0→50s: spawn 10 lần, mỗi 5s, mỗi lần random 1–2 champ (loại 0 hoặc 1)
         if (timer < 50f && spawnEventCount0to50 < maxSpawnEvents0to50)
         {
@@ -26,8 +30,8 @@ public class EnemySpawner : MonoBehaviour
                 int count = Random.Range(1, 3); // 1 hoặc 2
                 for (int i = 0; i < count; i++)
                 {
-                    // mỗi lần spawn 1 đối tượng loại 0 hoặc 1
-                    int type = Random.Range(0, 2);
+                    // Nếu ở gameScene1, chỉ spawn từ 0 đến 2, nếu ở gameScene2, spawn đầy đủ từ 0 đến 3
+                    int type = Random.Range(0, (currentSceneName == "gameScene1") ? 3 : 4); // Thể loại từ 0 đến 3
                     SpawnEnemy(type);
                 }
 
@@ -43,7 +47,8 @@ public class EnemySpawner : MonoBehaviour
                 int count = Random.Range(1, 4); // 1,2 hoặc 3
                 for (int i = 0; i < count; i++)
                 {
-                    int type = Random.Range(0, Mathf.Min(obj.Length, 4)); // đảm bảo không vượt prefab[]
+                    // Tương tự như trên: spawn từ 0 đến 2 cho gameScene1, từ 0 đến 3 cho gameScene2
+                    int type = Random.Range(0, (currentSceneName == "gameScene1") ? 3 : 4); // Thể loại từ 0 đến 3
                     SpawnEnemy(type);
                 }
 

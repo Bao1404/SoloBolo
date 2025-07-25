@@ -17,6 +17,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scenes/SelectChampion1.unity
     guid: 7587408c007308a44b4b6c830f6ff398
+  - enabled: 1
+    path: Assets/Scenes/Scenes/SelectChampion2.unity
+    guid: b918ea9861ee0ea4b8b62c0759e87eae
+  - enabled: 1
+    path: Assets/Scenes/Scenes/SceneGame2.unity
+    guid: e790c01c0cb9cac4c96602205d5a4c4c
+  - enabled: 1
+    path: Assets/Scenes/Scenes/SceneGame3.unity
+    guid: 80968527fad22724cb84e55a1050d42a
+  - enabled: 1
+    path: Assets/Scenes/Scenes/SelectChampion3.unity
+    guid: aef2348147f084141b9ba7323635a591
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
