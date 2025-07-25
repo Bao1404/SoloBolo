@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
                 for (int i = 0; i < count; i++)
                 {
                     // Nếu ở gameScene1, chỉ spawn từ 0 đến 2, nếu ở gameScene2, spawn đầy đủ từ 0 đến 3
-                    int type = Random.Range(0, (currentSceneName == "gameScene1") ? 3 : 4); // Thể loại từ 0 đến 3
+                    int type = Random.Range(0, (currentSceneName == "SceneGame") ? 3 : 4); // Thể loại từ 0 đến 3
                     SpawnEnemy(type);
                 }
 
@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
                 for (int i = 0; i < count; i++)
                 {
                     // Tương tự như trên: spawn từ 0 đến 2 cho gameScene1, từ 0 đến 3 cho gameScene2
-                    int type = Random.Range(0, (currentSceneName == "gameScene1") ? 3 : 4); // Thể loại từ 0 đến 3
+                    int type = Random.Range(0, (currentSceneName == "SceneGame") ? 3 : 4); // Thể loại từ 0 đến 3
                     SpawnEnemy(type);
                 }
 

@@ -241,6 +241,7 @@ public abstract class Character : MonoBehaviour
 
         if (currentHp <= 0)
         {
+            DieSound();
             Die();
         }
     }
@@ -249,7 +250,6 @@ public abstract class Character : MonoBehaviour
     {
         transform.localScale = initialScale;
         Destroy(gameObject);  // Tiêu diệt đối tượng
-        DieSound();
         if (CompareTag("Enemy"))
         {
             GameManager.instance.AddCoin(2);
